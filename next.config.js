@@ -2,10 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    domains: ["mghpbmpaynapdnrlpoyz.supabase.co"],
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 };
 
