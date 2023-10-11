@@ -11,23 +11,26 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
+import usePlayer from "@/hooks/usePlayer";
 
 import Button from "./button";
 
 interface HeaderProps {
   children: React.ReactNode;
-  classname?: string;
+  className?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ children, classname }) => {
+const Header: React.FC<HeaderProps> = ({ children, className }) => {
   const authModal = useAuthModal();
   const router = useRouter();
+  const player = usePlayer();
 
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
+    player.reset();
     router.refresh();
 
     if (error) {
@@ -41,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ children, classname }) => {
     <div
       className={twMerge(
         `h-fit bg-gradient-to-b from-emerald-800 p-6`,
-        classname
+        className
       )}
     >
       <div className="w-full mb-4 flex items-center justify-between">

@@ -73,7 +73,6 @@ export async function POST(request: Request) {
           throw new Error("Unhandled relevant event!");
       }
     } catch (error) {
-      console.log("Aasdasf")
       console.log(error);
       return new NextResponse("Webhook error", { status: 400 });
     }
